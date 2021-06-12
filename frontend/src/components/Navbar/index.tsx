@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-import { Home, Plus, Profile } from './icons';
+import { Home, Plus, Profile } from '../icons';
 
 import { Container, Link } from './styles';
 
@@ -9,15 +9,15 @@ const Navbar = () => {
 
   return (
     <Container>
-      <Link to="/" active={pathname === '/'}>
+      <Link to="/" $active={pathname === '/'}>
         <Home />
         Home
       </Link>
-      <Link to="/books" active={pathname === '/books'}>
+      <Link to="/books" $active={pathname === '/books'}>
         <Plus />
         Add Book
       </Link>
-      <Link to="/profile" active={pathname === '/profile'}>
+      <Link to="/profile" $active={pathname === '/profile'}>
         <Profile />
         Profile
       </Link>
