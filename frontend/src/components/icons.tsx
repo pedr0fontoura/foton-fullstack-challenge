@@ -81,7 +81,7 @@ export const Book = () => (
       d="M16 0H11.2C9.43269 0 8 1.59188 8 3.55556V16C8 14.5272 9.07452 13.3333 10.4 13.3333H16V0Z"
       stroke="currentColor"
       strokeWidth="2"
-      stroke-Linecap="round"
+      strokeLinecap="round"
       strokeLinejoin="round"
     />
   </svg>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   height: 100vh;
@@ -83,7 +84,8 @@ export const Grid = styled.div`
   row-gap: 12px;
 `;
 
-export const Card = styled.div`
+export const Card = styled(Link)`
+  text-decoration: none;
   color: rgba(49, 49, 49, 0.8);
 
   img {

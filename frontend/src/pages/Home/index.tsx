@@ -7,7 +7,7 @@ import { Search } from '../../components/icons';
 
 import { Container, Content, SearchWrapper, Grid, Card } from './styles';
 
-interface IBooks {
+interface IBook {
   id: number;
   name: string;
   author: string;
@@ -16,11 +16,11 @@ interface IBooks {
 }
 
 const Home = () => {
-  const [books, setBooks] = useState<IBooks[]>([]);
+  const [books, setBooks] = useState<IBook[]>([]);
 
   useEffect(() => {
     (async () => {
-      const { status, data } = await api.get<IBooks[]>('/books');
+      const { status, data } = await api.get<IBook[]>('/books');
 
       if (status !== 200) return;
 
@@ -42,7 +42,7 @@ const Home = () => {
 
         <Grid>
           {books.map(book => (
-            <Card key={book.id}>
+            <Card key={book.id} to={`/books/${book.id}`}>
               <img src={book.image} alt={book.name} />
               <p>{book.name}</p>
               <span>by {book.author}</span>
