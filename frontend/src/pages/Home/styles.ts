@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
-export const Container = styled.main`
+export const Container = styled.div`
   height: 100vh;
-  padding: 0 20px;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
 
   h1 {
     margin: 30px 0;
@@ -17,6 +20,17 @@ export const Container = styled.main`
       font-weight: 600;
     }
   }
+`;
+
+export const Content = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 20px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const SearchWrapper = styled.div`

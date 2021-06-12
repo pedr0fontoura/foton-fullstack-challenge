@@ -2,10 +2,21 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100vh;
-  padding: 0 20px;
+  width: 100vw;
 
   display: flex;
   flex-direction: column;
+`;
+
+export const Content = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 20px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const Title = styled.h1`
@@ -16,6 +27,8 @@ export const Title = styled.h1`
 `;
 
 export const Form = styled.form`
+  padding-bottom: 38px;
+
   > div {
     & + div {
       margin-top: 38px;
