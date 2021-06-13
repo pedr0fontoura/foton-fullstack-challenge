@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { debounce } from 'lodash';
+import axios from 'axios';
 
 import { IBook } from '../../types';
 import api from '../../services/api';
@@ -74,16 +75,27 @@ const Home = () => {
   };
 
   useEffect(() => {
-    (async () => {
+    const source = axios.CancelToken.source();
+
+    const fetchData = async () => {
       try {
-        const { data } = await api.get<IBook[]>('/books');
+        const { data } = await api.get<IBook[]>('/books', {
+          cancelToken: source.token,
+        });
+
         setBooks(data);
-      } catch {
+        setIsLoading(false);
+      } catch (err) {
+        if (axios.isCancel(err)) return;
+
         setError(true);
-      } finally {
         setIsLoading(false);
       }
-    })();
+    };
+
+    fetchData();
+
+    return () => source.cancel();
   }, []);
 
   return (

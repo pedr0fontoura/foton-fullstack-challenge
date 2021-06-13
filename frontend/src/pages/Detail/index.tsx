@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 import { IBook } from '../../types';
 import api from '../../services/api';
@@ -25,16 +26,27 @@ const Detail = () => {
   const { id } = useParams<IRouteParams>();
 
   useEffect(() => {
-    (async () => {
+    const source = axios.CancelToken.source();
+
+    const fetchData = async () => {
       try {
-        const { data } = await api.get<IBook>(`/books/${id}`);
+        const { data } = await api.get<IBook>(`/books/${id}`, {
+          cancelToken: source.token,
+        });
+
         setBook(data);
-      } catch {
+        setIsLoading(false);
+      } catch (err) {
+        if (axios.isCancel(err)) return;
+
         setError(true);
-      } finally {
         setIsLoading(false);
       }
-    })();
+    };
+
+    fetchData();
+
+    return () => source.cancel();
   }, []);
 
   return (
