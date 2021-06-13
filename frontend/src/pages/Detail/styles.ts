@@ -161,3 +161,9 @@ export const Actions = styled.div`
     }
   }
 `;
+
+export const Message = styled.p`
+  margin: 50px auto;
+
+  font-size: 24px;
+`;

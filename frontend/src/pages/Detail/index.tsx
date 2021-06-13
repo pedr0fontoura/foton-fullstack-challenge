@@ -10,7 +10,7 @@ import { Shape1, Shape2, Shape3, Shape4, Shape5 } from './shapes';
 import LoadingCover from './components/LoadingCover';
 import LoadingArticle from './components/LoadingArticle';
 
-import { Container, Header, BackButton, Cover, Content, Article, Actions } from './styles';
+import { Container, Header, BackButton, Cover, Content, Article, Actions, Message } from './styles';
 
 interface IRouteParams {
   id: string;
@@ -20,16 +20,20 @@ const Detail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [book, setBook] = useState<IBook>();
 
+  const [error, setError] = useState(false);
+
   const { id } = useParams<IRouteParams>();
 
   useEffect(() => {
     (async () => {
-      const { status, data } = await api.get<IBook>(`/books/${id}`);
-
-      if (status !== 200) return;
-
-      setBook(data);
-      setIsLoading(false);
+      try {
+        const { data } = await api.get<IBook>(`/books/${id}`);
+        setBook(data);
+      } catch {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
     })();
   }, []);
 
@@ -47,39 +51,44 @@ const Detail = () => {
           <Shape4 style={{ position: 'absolute', left: '223px', top: '218px' }} />
           <Shape5 style={{ position: 'absolute', left: '298px', top: '0px' }} />
 
-          {isLoading ? (
-            <LoadingCover />
-          ) : (
+          {isLoading && <LoadingCover />}
+
+          {!error && !isLoading && (
             <Cover>
               <img src={book?.image} alt={book?.name} />
             </Cover>
           )}
         </Header>
 
-        {isLoading ? (
-          <LoadingArticle />
-        ) : (
+        {isLoading && <LoadingArticle />}
+
+        {!error && !isLoading && (
           <Article>
             <h1>{book?.name}</h1>
             <span>{book?.author}</span>
             <p>{book?.description}</p>
           </Article>
         )}
+
+        {error && <Message>Something went wrong ...</Message>}
       </Content>
-      <Actions>
-        <button type="button">
-          <Book />
-          <strong>Read</strong>
-        </button>
-        <button type="button">
-          <Headphones />
-          <strong>Listen</strong>
-        </button>
-        <button type="button">
-          <Share />
-          <strong>Share</strong>
-        </button>
-      </Actions>
+
+      {!error && !isLoading && (
+        <Actions>
+          <button type="button">
+            <Book />
+            <strong>Read</strong>
+          </button>
+          <button type="button">
+            <Headphones />
+            <strong>Listen</strong>
+          </button>
+          <button type="button">
+            <Share />
+            <strong>Share</strong>
+          </button>
+        </Actions>
+      )}
     </Container>
   );
 };

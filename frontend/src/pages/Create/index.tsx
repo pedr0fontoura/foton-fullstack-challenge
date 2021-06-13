@@ -34,22 +34,22 @@ const Create = () => {
 
     let isInvalid = false;
 
-    if (formData.name === '') {
+    if (formData.name.length === 0) {
       isInvalid = true;
       document.getElementById('name')?.classList.add('error');
     }
 
-    if (formData.author === '') {
+    if (formData.author.length === 0) {
       isInvalid = true;
       document.getElementById('author')?.classList.add('error');
     }
 
-    if (formData.description === '') {
+    if (formData.description.length === 0) {
       isInvalid = true;
       document.getElementById('description')?.classList.add('error');
     }
 
-    if (formData.image === '') {
+    if (formData.image.length === 0) {
       isInvalid = true;
       document.getElementById('image')?.classList.add('error');
     }

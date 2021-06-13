@@ -40,6 +40,8 @@ const Home = () => {
           const { data } = await api.get<IBook[]>(`/books?name_like=${name}&_limit=${DEFAULT_SEARCH_LIMIT}`);
           setBooks(data);
         }
+
+        setError(false);
       } catch (err) {
         setError(true);
       } finally {
