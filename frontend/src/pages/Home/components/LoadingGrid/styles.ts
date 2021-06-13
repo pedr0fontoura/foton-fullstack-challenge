@@ -8,6 +8,7 @@ export const Container = styled.div`
   grid-template-rows: 187px;
 
   padding: 8px 0;
+  margin-top: 30px;
 
   justify-content: space-between;
   row-gap: 12px;

@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { debounce } from 'lodash';
 import api from '../../services/api';
 
 import Navbar from '../../components/Navbar';
@@ -6,7 +7,7 @@ import { Search } from '../../components/icons';
 
 import LoadingGrid from './components/LoadingGrid';
 
-import { Container, Content, SearchWrapper, Grid, Card } from './styles';
+import { Container, Content, Greetings, SearchBox, Grid, Card, LoadMoreButton, Message } from './styles';
 
 interface IBook {
   id: number;
@@ -16,9 +17,66 @@ interface IBook {
   image: string;
 }
 
+const DEFAULT_SEARCH_LIMIT = 3;
+
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [books, setBooks] = useState<IBook[]>([]);
+
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchInputValue, setSearchInputValue] = useState('');
+  const [searchLimit, setSearchLimit] = useState(DEFAULT_SEARCH_LIMIT);
+
+  const [error, setError] = useState(false);
+
+  const handleSearch = useCallback(
+    debounce(async (name: string): Promise<void> => {
+      if (!isSearching) {
+        setIsSearching(true);
+      }
+
+      setIsLoading(true);
+
+      try {
+        if (name.length === 0) {
+          const { data } = await api.get<IBook[]>(`/books?name_like=${name}`);
+          setBooks(data);
+          setIsSearching(false);
+        } else {
+          setSearchLimit(DEFAULT_SEARCH_LIMIT);
+          const { data } = await api.get<IBook[]>(`/books?name_like=${name}&_limit=${searchLimit}`);
+          setBooks(data);
+        }
+      } catch (err) {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    }, 500),
+    [],
+  );
+
+  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setSearchInputValue(event.target.value);
+    handleSearch(event.target.value);
+  };
+
+  const handleLoadMore = async () => {
+    setIsLoading(true);
+
+    try {
+      const { data } = await api.get<IBook[]>(
+        `/books?name_like=${searchInputValue}&_limit=${searchLimit + DEFAULT_SEARCH_LIMIT}`,
+      );
+      setBooks(data);
+
+      setSearchLimit(searchLimit + DEFAULT_SEARCH_LIMIT);
+    } catch {
+      setError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -34,18 +92,18 @@ const Home = () => {
   return (
     <Container>
       <Content>
-        <SearchWrapper>
+        <SearchBox>
           <Search />
-          <input placeholder="Search book" />
-        </SearchWrapper>
+          <input type="text" placeholder="Search book" value={searchInputValue} onChange={handleSearchInputChange} />
+        </SearchBox>
 
-        <h1>
+        <Greetings $hide={isSearching}>
           Hi, <strong>Mehmed Al Fatih</strong> 👋
-        </h1>
+        </Greetings>
 
-        {isLoading ? (
-          <LoadingGrid />
-        ) : (
+        {isLoading && <LoadingGrid />}
+
+        {!isLoading && !error && (
           <Grid>
             {books.map(book => (
               <Card key={book.id} to={`/books/${book.id}`}>
@@ -54,8 +112,12 @@ const Home = () => {
                 <span>by {book.author}</span>
               </Card>
             ))}
+
+            {isSearching && <LoadMoreButton onClick={handleLoadMore}>Load more ...</LoadMoreButton>}
           </Grid>
         )}
+
+        {error && <Message>Something went wrong ...</Message>}
       </Content>
       <Navbar />
     </Container>

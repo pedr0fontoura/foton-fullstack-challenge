@@ -1,5 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+
+interface GreetingsProps {
+  $hide: boolean;
+}
 
 export const Container = styled.div`
   height: 100vh;
@@ -7,20 +11,6 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-
-  h1 {
-    margin: 30px 0;
-
-    color: #54565a;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 28px;
-
-    strong {
-      color: #ff6a79;
-      font-weight: 600;
-    }
-  }
 `;
 
 export const Content = styled.div`
@@ -34,7 +24,36 @@ export const Content = styled.div`
   overflow-x: hidden;
 `;
 
-export const SearchWrapper = styled.div`
+export const Greetings = styled.h1<GreetingsProps>`
+  margin-top: 30px;
+
+  color: #54565a;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+
+  transition: all 0.5s;
+
+  strong {
+    color: #ff6a79;
+    font-weight: 600;
+  }
+
+  ${({ $hide }) =>
+    $hide
+      ? css`
+          height: 0;
+          margin-top: 0;
+          opacity: 0;
+        `
+      : css`
+          margin-top: 30px;
+          height: default;
+          opacity: 1;
+        `}
+`;
+
+export const SearchBox = styled.div`
   height: 48px;
   width: 100%;
 
@@ -81,6 +100,7 @@ export const Grid = styled.div`
   grid-template-rows: auto;
 
   padding: 8px 0;
+  margin-top: 30px;
 
   justify-content: space-between;
   row-gap: 12px;
@@ -115,4 +135,28 @@ export const Card = styled(Link)`
     font-weight: 900;
     line-height: 12px;
   }
+`;
+
+export const LoadMoreButton = styled.button`
+  width: 100px;
+  height: 150px;
+
+  padding: 8px;
+
+  border: none;
+  border-radius: 5px;
+
+  outline: none;
+
+  opacity: 0.5;
+
+  transition: opacity 0.1s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+export const Message = styled.p`
+  margin: 50px auto;
 `;
