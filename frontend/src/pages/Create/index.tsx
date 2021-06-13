@@ -32,13 +32,29 @@ const Create = () => {
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
 
-    if (formData.name === '') return;
+    let isInvalid = false;
 
-    if (formData.author === '') return;
+    if (formData.name === '') {
+      isInvalid = true;
+      document.getElementById('name')?.classList.add('error');
+    }
 
-    if (formData.description === '') return;
+    if (formData.author === '') {
+      isInvalid = true;
+      document.getElementById('author')?.classList.add('error');
+    }
 
-    if (formData.image === '') return;
+    if (formData.description === '') {
+      isInvalid = true;
+      document.getElementById('description')?.classList.add('error');
+    }
+
+    if (formData.image === '') {
+      isInvalid = true;
+      document.getElementById('image')?.classList.add('error');
+    }
+
+    if (isInvalid) return;
 
     await api.post('/books', formData);
   };
@@ -50,22 +66,49 @@ const Create = () => {
         <Form onSubmit={handleFormSubmit}>
           <div>
             <label htmlFor="name">Name</label>
-            <input id="name" name="name" type="text" value={formData.name} onChange={updateFormData} />
+            <input
+              id="name"
+              name="name"
+              type="text"
+              value={formData.name}
+              onChange={updateFormData}
+              onFocus={() => document.getElementById('name')?.classList.remove('error')}
+            />
           </div>
 
           <div>
             <label htmlFor="image">Image URL</label>
-            <input id="image" name="image" type="text" value={formData.author} onChange={updateFormData} />
+            <input
+              id="image"
+              name="image"
+              type="text"
+              value={formData.image}
+              onChange={updateFormData}
+              onFocus={() => document.getElementById('image')?.classList.remove('error')}
+            />
           </div>
 
           <div>
             <label htmlFor="author">Author</label>
-            <input id="author" name="author" type="text" value={formData.author} onChange={updateFormData} />
+            <input
+              id="author"
+              name="author"
+              type="text"
+              value={formData.author}
+              onChange={updateFormData}
+              onFocus={() => document.getElementById('author')?.classList.remove('error')}
+            />
           </div>
 
           <div>
             <label htmlFor="description">Description</label>
-            <textarea id="description" name="description" value={formData.description} onChange={updateFormData} />
+            <textarea
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={updateFormData}
+              onFocus={() => document.getElementById('description')?.classList.remove('error')}
+            />
           </div>
 
           <button type="submit">Add new book</button>

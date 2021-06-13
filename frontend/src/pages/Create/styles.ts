@@ -33,27 +33,33 @@ export const Form = styled.form`
     & + div {
       margin-top: 38px;
     }
-  }
 
-  label {
-    display: block;
-    color: #000000;
-    font-weight: bold;
-  }
+    label {
+      display: block;
+      color: #000000;
+      font-weight: bold;
+    }
 
-  input {
-    height: 48px;
-    width: 100%;
+    input {
+      height: 48px;
+      width: 100%;
 
-    margin-top: 10px;
+      margin-top: 10px;
 
-    padding: 8px;
-    border: none;
-    border-radius: 10px;
+      padding: 8px;
+      border: 2px solid rgba(255, 0, 0, 0);
+      border-radius: 10px;
 
-    background: #fdfcfc;
+      background: #fdfcfc;
 
-    box-shadow: 5px 5px 80px rgba(212, 173, 134, 0.4926);
+      box-shadow: 5px 5px 80px rgba(212, 173, 134, 0.4926);
+
+      transition: all 0.3s ease-in-out;
+
+      &.error {
+        border: 2px solid rgba(255, 0, 0, 0.8);
+      }
+    }
   }
 
   textarea {
@@ -63,7 +69,7 @@ export const Form = styled.form`
     margin-top: 10px;
 
     padding: 8px;
-    border: none;
+    border: 2px solid rgba(255, 0, 0, 0);
     border-radius: 10px;
 
     font-family: 'SF Pro', sans-serif;
@@ -74,6 +80,12 @@ export const Form = styled.form`
     background: #fdfcfc;
 
     box-shadow: 5px 5px 80px rgba(212, 173, 134, 0.4926);
+
+    transition: all 0.3s ease-in-out;
+
+    &.error {
+      border: 2px solid rgba(255, 0, 0, 0.8);
+    }
   }
 
   button {
