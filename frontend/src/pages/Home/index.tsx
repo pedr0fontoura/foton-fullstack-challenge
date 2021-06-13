@@ -31,20 +31,19 @@ const Home = () => {
 
   const handleSearch = useCallback(
     debounce(async (name: string): Promise<void> => {
-      if (!isSearching) {
-        setIsSearching(true);
-      }
-
+      setIsSearching(true);
       setIsLoading(true);
 
       try {
         if (name.length === 0) {
           const { data } = await api.get<IBook[]>(`/books?name_like=${name}`);
           setBooks(data);
+
           setIsSearching(false);
         } else {
           setSearchLimit(DEFAULT_SEARCH_LIMIT);
-          const { data } = await api.get<IBook[]>(`/books?name_like=${name}&_limit=${searchLimit}`);
+
+          const { data } = await api.get<IBook[]>(`/books?name_like=${name}&_limit=${DEFAULT_SEARCH_LIMIT}`);
           setBooks(data);
         }
       } catch (err) {
@@ -62,30 +61,32 @@ const Home = () => {
   };
 
   const handleLoadMore = async () => {
+    const updatedSearchLimit = searchLimit + DEFAULT_SEARCH_LIMIT;
+
     setIsLoading(true);
 
     try {
-      const { data } = await api.get<IBook[]>(
-        `/books?name_like=${searchInputValue}&_limit=${searchLimit + DEFAULT_SEARCH_LIMIT}`,
-      );
+      const { data } = await api.get<IBook[]>(`/books?name_like=${searchInputValue}&_limit=${updatedSearchLimit}`);
       setBooks(data);
-
-      setSearchLimit(searchLimit + DEFAULT_SEARCH_LIMIT);
     } catch {
       setError(true);
     } finally {
       setIsLoading(false);
     }
+
+    setSearchLimit(updatedSearchLimit);
   };
 
   useEffect(() => {
     (async () => {
-      const { status, data } = await api.get<IBook[]>('/books');
-
-      if (status !== 200) return;
-
-      setBooks(data);
-      setIsLoading(false);
+      try {
+        const { data } = await api.get<IBook[]>('/books');
+        setBooks(data);
+      } catch {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
     })();
   }, []);
 
