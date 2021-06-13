@@ -70,7 +70,7 @@ export const Cover = styled.figure`
   }
 `;
 
-export const Description = styled.section`
+export const Article = styled.article`
   padding: 67px 20px 0 20px;
 
   h1 {

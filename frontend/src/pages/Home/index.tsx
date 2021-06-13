@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import api from '../../services/api';
 
 import Navbar from '../../components/Navbar';
-
 import { Search } from '../../components/icons';
+
+import LoadingGrid from './components/LoadingGrid';
 
 import { Container, Content, SearchWrapper, Grid, Card } from './styles';
 
@@ -16,6 +17,7 @@ interface IBook {
 }
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [books, setBooks] = useState<IBook[]>([]);
 
   useEffect(() => {
@@ -25,6 +27,7 @@ const Home = () => {
       if (status !== 200) return;
 
       setBooks(data);
+      setIsLoading(false);
     })();
   }, []);
 
@@ -40,15 +43,19 @@ const Home = () => {
           Hi, <strong>Mehmed Al Fatih</strong> 👋
         </h1>
 
-        <Grid>
-          {books.map(book => (
-            <Card key={book.id} to={`/books/${book.id}`}>
-              <img src={book.image} alt={book.name} />
-              <p>{book.name}</p>
-              <span>by {book.author}</span>
-            </Card>
-          ))}
-        </Grid>
+        {isLoading ? (
+          <LoadingGrid />
+        ) : (
+          <Grid>
+            {books.map(book => (
+              <Card key={book.id} to={`/books/${book.id}`}>
+                <img src={book.image} alt={book.name} />
+                <p>{book.name}</p>
+                <span>by {book.author}</span>
+              </Card>
+            ))}
+          </Grid>
+        )}
       </Content>
       <Navbar />
     </Container>

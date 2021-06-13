@@ -38,6 +38,8 @@ export const SearchWrapper = styled.div`
   height: 48px;
   width: 100%;
 
+  flex-shrink: 0;
+
   display: flex;
   align-items: center;
 

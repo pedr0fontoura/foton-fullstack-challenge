@@ -5,8 +5,10 @@ import api from '../../services/api';
 import { Back, Book, Headphones, Share } from '../../components/icons';
 
 import { Shape1, Shape2, Shape3, Shape4, Shape5 } from './shapes';
+import LoadingCover from './components/LoadingCover';
+import LoadingArticle from './components/LoadingArticle';
 
-import { Container, Header, BackButton, Cover, Content, Description, Actions } from './styles';
+import { Container, Header, BackButton, Cover, Content, Article, Actions } from './styles';
 
 interface IBook {
   id: number;
@@ -21,6 +23,7 @@ interface IRouteParams {
 }
 
 const Detail = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [book, setBook] = useState<IBook>();
 
   const { id } = useParams<IRouteParams>();
@@ -32,6 +35,7 @@ const Detail = () => {
       if (status !== 200) return;
 
       setBook(data);
+      setIsLoading(false);
     })();
   }, []);
 
@@ -49,16 +53,24 @@ const Detail = () => {
           <Shape4 style={{ position: 'absolute', left: '223px', top: '218px' }} />
           <Shape5 style={{ position: 'absolute', left: '298px', top: '0px' }} />
 
-          <Cover>
-            <img src={book?.image} alt={book?.name} />
-          </Cover>
+          {isLoading ? (
+            <LoadingCover />
+          ) : (
+            <Cover>
+              <img src={book?.image} alt={book?.name} />
+            </Cover>
+          )}
         </Header>
 
-        <Description>
-          <h1>{book?.name}</h1>
-          <span>{book?.author}</span>
-          <p>{book?.description}</p>
-        </Description>
+        {isLoading ? (
+          <LoadingArticle />
+        ) : (
+          <Article>
+            <h1>{book?.name}</h1>
+            <span>{book?.author}</span>
+            <p>{book?.description}</p>
+          </Article>
+        )}
       </Content>
       <Actions>
         <button type="button">
