@@ -10,7 +10,7 @@ const shimmer = keyframes`
 `;
 
 export default styled.div`
-  background-image: linear-gradient(-90deg, #fff 0%, #e7edf1 50%, #fff 100%);
+  background-image: linear-gradient(-90deg, #e7edf1 0%, #f8f8f8 50%, #e7edf1 100%);
   background-size: 400% 400%;
   animation: 1.2s ${shimmer} ease-in-out infinite;
 `;

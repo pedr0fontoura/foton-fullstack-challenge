@@ -90,5 +90,15 @@ export const Form = styled.form`
     font-weight: 600;
 
     background: #ff6978;
+
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      filter: brightness(96%);
+    }
+
+    &:active {
+      filter: brightness(90%);
+    }
   }
 `;

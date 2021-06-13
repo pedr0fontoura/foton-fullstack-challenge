@@ -125,6 +125,27 @@ export const Actions = styled.div`
     background: none;
     border: none;
 
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    &:active {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    svg {
+      color: #cfcbd2;
+    }
+
+    strong {
+      margin-left: 10px;
+
+      color: #3f4043;
+      font-size: 14px;
+    }
+
     & + button {
       &::before {
         content: '';
@@ -137,17 +158,6 @@ export const Actions = styled.div`
 
         background: rgba(151, 151, 151, 0.2);
       }
-    }
-
-    svg {
-      color: #cfcbd2;
-    }
-
-    strong {
-      margin-left: 10px;
-
-      color: #3f4043;
-      font-size: 14px;
     }
   }
 `;

@@ -17,10 +17,10 @@ const Navbar = () => {
         <Plus />
         Add Book
       </Link>
-      <Link to="/profile" $active={pathname === '/profile'}>
+      <button type="button" disabled>
         <Profile />
         Profile
-      </Link>
+      </button>
     </Container>
   );
 };

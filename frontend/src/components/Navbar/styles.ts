@@ -14,6 +14,29 @@ export const Container = styled.div`
   align-items: center;
 
   background: #fff;
+
+  button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: none;
+    outline: none;
+
+    text-decoration: none;
+    font-size: 10px;
+    color: #bfbebf;
+
+    background: none;
+
+    &:disabled {
+      cursor: default;
+    }
+
+    svg {
+      margin-bottom: 8px;
+    }
+  }
 `;
 
 export const Link = styled(RouterLink)<ILinkProps>`
@@ -24,6 +47,10 @@ export const Link = styled(RouterLink)<ILinkProps>`
   text-decoration: none;
   font-size: 10px;
   color: ${({ $active }) => ($active ? '#000000' : '#BFBEBF')};
+
+  &:hover {
+    color: #000000;
+  }
 
   svg {
     margin-bottom: 8px;
