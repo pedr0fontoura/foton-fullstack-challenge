@@ -5,15 +5,22 @@ interface ILinkProps {
   $active?: boolean;
 }
 
-export const Container = styled.div`
+export const Container = styled.nav`
   height: 59px;
   width: 100%;
+
+  background: #fff;
+`;
+
+export const Content = styled.div`
+  height: 100%;
+  max-width: 768px;
 
   display: flex;
   justify-content: space-around;
   align-items: center;
 
-  background: #fff;
+  margin: 0 auto;
 
   button {
     display: flex;

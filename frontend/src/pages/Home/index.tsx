@@ -10,7 +10,17 @@ import { Search } from '../../components/icons';
 
 import LoadingGrid from './components/LoadingGrid';
 
-import { Container, Content, Greetings, SearchBox, Grid, Card, LoadMoreButton, Message } from './styles';
+import {
+  Container,
+  ContentWrapper,
+  Content,
+  Greetings,
+  SearchBox,
+  Grid,
+  Card,
+  LoadMoreButton,
+  Message,
+} from './styles';
 
 const DEFAULT_SEARCH_LIMIT = 3;
 
@@ -100,34 +110,36 @@ const Home = () => {
 
   return (
     <Container>
-      <Content>
-        <SearchBox>
-          <Search />
-          <input type="text" placeholder="Search book" value={searchInputValue} onChange={handleSearchInputChange} />
-        </SearchBox>
+      <ContentWrapper>
+        <Content>
+          <SearchBox>
+            <Search />
+            <input type="text" placeholder="Search book" value={searchInputValue} onChange={handleSearchInputChange} />
+          </SearchBox>
 
-        <Greetings $hide={isSearching}>
-          Hi, <strong>Mehmed Al Fatih</strong> 👋
-        </Greetings>
+          <Greetings $hide={isSearching}>
+            Hi, <strong>Mehmed Al Fatih</strong> 👋
+          </Greetings>
 
-        {isLoading && <LoadingGrid />}
+          {isLoading && <LoadingGrid />}
 
-        {!isLoading && !error && (
-          <Grid>
-            {books.map(book => (
-              <Card key={book.id} to={`/books/${book.id}`}>
-                <img src={book.image} alt={book.name} />
-                <p>{book.name}</p>
-                <span>by {book.author}</span>
-              </Card>
-            ))}
+          {!isLoading && !error && (
+            <Grid>
+              {books.map(book => (
+                <Card key={book.id} to={`/books/${book.id}`}>
+                  <img src={book.image} alt={book.name} />
+                  <p>{book.name}</p>
+                  <span>by {book.author}</span>
+                </Card>
+              ))}
 
-            {isSearching && <LoadMoreButton onClick={handleLoadMore}>Load more ...</LoadMoreButton>}
-          </Grid>
-        )}
+              {isSearching && <LoadMoreButton onClick={handleLoadMore}>Load more ...</LoadMoreButton>}
+            </Grid>
+          )}
 
-        {error && <Message>Something went wrong ...</Message>}
-      </Content>
+          {error && <Message>Something went wrong ...</Message>}
+        </Content>
+      </ContentWrapper>
       <Navbar />
     </Container>
   );

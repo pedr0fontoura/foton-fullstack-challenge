@@ -13,15 +13,23 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
+export const ContentWrapper = styled.div`
+  flex: 1;
+  overflow-y: auto;
+`;
+
 export const Content = styled.div`
+  max-width: 768px;
+
   flex: 1;
   display: flex;
   flex-direction: column;
 
   padding: 0 20px;
 
-  overflow-y: auto;
-  overflow-x: hidden;
+  @media (min-width: 768px) {
+    margin: 0 auto;
+  }
 `;
 
 export const Greetings = styled.h1<IGreetingsProps>`
@@ -96,7 +104,7 @@ export const Grid = styled.div`
   width: 100%;
 
   display: grid;
-  grid-template-columns: 100px 100px 100px;
+  grid-template-columns: repeat(3, 100px);
   grid-template-rows: auto;
 
   padding: 8px 0;
@@ -104,14 +112,24 @@ export const Grid = styled.div`
 
   justify-content: space-between;
   row-gap: 12px;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(4, 100px);
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 150px);
+  }
 `;
 
 export const Card = styled(Link)`
+  width: 100%;
+
   text-decoration: none;
   color: rgba(49, 49, 49, 0.8);
 
   img {
-    width: 100px;
+    width: 100%;
     height: 150px;
 
     border-radius: 5px;
@@ -120,25 +138,35 @@ export const Card = styled(Link)`
   }
 
   p {
-    height: 14px;
-
     font-size: 12px;
     font-weight: 700;
     line-height: 14px;
   }
 
   span {
-    height: 12px;
-
     font-family: 'Roboto', sans-serif;
     font-size: 10px;
     font-weight: 900;
     line-height: 12px;
   }
+
+  @media (min-width: 768px) {
+    img {
+      height: 200px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    span {
+      font-size: 14px;
+    }
+  }
 `;
 
 export const LoadMoreButton = styled.button`
-  width: 100px;
+  width: 100%;
   height: 150px;
 
   padding: 8px;
@@ -154,6 +182,10 @@ export const LoadMoreButton = styled.button`
 
   &:hover {
     opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    height: 200px;
   }
 `;
 

@@ -6,6 +6,8 @@ export const Container = styled.div`
   div.name-skeleton {
     height: 29px;
     width: 100%;
+
+    border-radius: 5px;
   }
 
   div.author-skeleton {
@@ -13,6 +15,7 @@ export const Container = styled.div`
     width: 60%;
 
     margin-top: 7px;
+    border-radius: 5px;
   }
 
   div.description-skeleton {
@@ -26,6 +29,7 @@ export const Container = styled.div`
       height: 14px;
 
       margin-bottom: 9px;
+      border-radius: 5px;
 
       &:nth-child(1) {
         width: 100%;

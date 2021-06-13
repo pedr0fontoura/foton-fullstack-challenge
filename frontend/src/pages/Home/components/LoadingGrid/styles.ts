@@ -14,7 +14,7 @@ export const Container = styled.div`
   row-gap: 12px;
 
   div.img-skeleton {
-    width: 100px;
+    width: 100%;
     height: 150px;
 
     border-radius: 5px;
@@ -34,5 +34,26 @@ export const Container = styled.div`
 
     margin-top: 8px;
     border-radius: 5px;
+  }
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(4, 100px);
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 150px);
+    grid-template-rows: auto;
+
+    div.img-skeleton {
+      height: 200px;
+    }
+
+    div.name-skeleton {
+      height: 16px;
+    }
+
+    div.author-skeleton {
+      height: 14px;
+    }
   }
 `;
