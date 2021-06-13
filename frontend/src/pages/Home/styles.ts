@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-interface GreetingsProps {
+interface IGreetingsProps {
   $hide: boolean;
 }
 
@@ -24,7 +24,7 @@ export const Content = styled.div`
   overflow-x: hidden;
 `;
 
-export const Greetings = styled.h1<GreetingsProps>`
+export const Greetings = styled.h1<IGreetingsProps>`
   margin-top: 30px;
 
   color: #54565a;

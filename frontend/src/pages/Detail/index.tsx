@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
+import { IBook } from '../../types';
 import api from '../../services/api';
 
 import { Back, Book, Headphones, Share } from '../../components/icons';
@@ -9,14 +11,6 @@ import LoadingCover from './components/LoadingCover';
 import LoadingArticle from './components/LoadingArticle';
 
 import { Container, Header, BackButton, Cover, Content, Article, Actions } from './styles';
-
-interface IBook {
-  id: number;
-  name: string;
-  author: string;
-  description: string;
-  image: string;
-}
 
 interface IRouteParams {
   id: string;

@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { debounce } from 'lodash';
+
+import { IBook } from '../../types';
 import api from '../../services/api';
 
 import Navbar from '../../components/Navbar';
@@ -8,14 +10,6 @@ import { Search } from '../../components/icons';
 import LoadingGrid from './components/LoadingGrid';
 
 import { Container, Content, Greetings, SearchBox, Grid, Card, LoadMoreButton, Message } from './styles';
-
-interface IBook {
-  id: number;
-  name: string;
-  author: string;
-  description: string;
-  image: string;
-}
 
 const DEFAULT_SEARCH_LIMIT = 3;
 
