@@ -2,6 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import Book from '@modules/books/models/Book';
 import IBooksRepository from '@modules/books/repositories/IBooksRepository';
+import AppError from '@shared/errors/AppError';
 
 interface IRequest {
   id: string;
@@ -18,7 +19,7 @@ class ShowBookUseCase {
     const book = await this.booksRepository.findById(id);
 
     if (!book) {
-      throw new Error(`Book doesn't exist.`);
+      throw new AppError(`Book doesn't exist.`, 404);
     }
 
     return book;

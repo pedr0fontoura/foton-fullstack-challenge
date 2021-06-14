@@ -2,6 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import Book from '@modules/books/models/Book';
 import IBooksRepository from '@modules/books/repositories/IBooksRepository';
+import AppError from '@shared/errors/AppError';
 
 interface IRequest {
   name: string;
@@ -21,7 +22,7 @@ class CreateBookUseCase {
     const bookAlreadyExists = await this.booksRepository.findByName(name);
 
     if (bookAlreadyExists) {
-      throw new Error('A book with the same name already exists.');
+      throw new AppError('A book with the same name already exists.');
     }
 
     const book = await this.booksRepository.create({
