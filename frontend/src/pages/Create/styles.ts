@@ -8,15 +8,22 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
+export const ContentWrapper = styled.div`
+  flex: 1;
+  overflow-y: auto;
+`;
+
 export const Content = styled.div`
+  width: 100%;
+  max-width: 768px;
+
+  margin: 0 auto;
+
   flex: 1;
   display: flex;
   flex-direction: column;
 
   padding: 0 20px;
-
-  overflow-y: auto;
-  overflow-x: hidden;
 `;
 
 export const Title = styled.h1`

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import api from '../../services/api';
 
 import Navbar from '../../components/Navbar';
 
-import { Container, Content, Title, Form } from './styles';
+import { Container, ContentWrapper, Content, Title, Form } from './styles';
 
 interface IFormData {
   name: string;
@@ -61,59 +62,61 @@ const Create = () => {
 
   return (
     <Container>
-      <Content>
-        <Title>Add a new book</Title>
-        <Form onSubmit={handleFormSubmit}>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={updateFormData}
-              onFocus={() => document.getElementById('name')?.classList.remove('error')}
-            />
-          </div>
+      <ContentWrapper>
+        <Content>
+          <Title>Add a new book</Title>
+          <Form onSubmit={handleFormSubmit}>
+            <div>
+              <label htmlFor="name">Name</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={updateFormData}
+                onFocus={() => document.getElementById('name')?.classList.remove('error')}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="image">Image URL</label>
-            <input
-              id="image"
-              name="image"
-              type="text"
-              value={formData.image}
-              onChange={updateFormData}
-              onFocus={() => document.getElementById('image')?.classList.remove('error')}
-            />
-          </div>
+            <div>
+              <label htmlFor="image">Image URL</label>
+              <input
+                id="image"
+                name="image"
+                type="text"
+                value={formData.image}
+                onChange={updateFormData}
+                onFocus={() => document.getElementById('image')?.classList.remove('error')}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="author">Author</label>
-            <input
-              id="author"
-              name="author"
-              type="text"
-              value={formData.author}
-              onChange={updateFormData}
-              onFocus={() => document.getElementById('author')?.classList.remove('error')}
-            />
-          </div>
+            <div>
+              <label htmlFor="author">Author</label>
+              <input
+                id="author"
+                name="author"
+                type="text"
+                value={formData.author}
+                onChange={updateFormData}
+                onFocus={() => document.getElementById('author')?.classList.remove('error')}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="description">Description</label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={updateFormData}
-              onFocus={() => document.getElementById('description')?.classList.remove('error')}
-            />
-          </div>
+            <div>
+              <label htmlFor="description">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={updateFormData}
+                onFocus={() => document.getElementById('description')?.classList.remove('error')}
+              />
+            </div>
 
-          <button type="submit">Add new book</button>
-        </Form>
-      </Content>
+            <button type="submit">Add new book</button>
+          </Form>
+        </Content>
+      </ContentWrapper>
       <Navbar />
     </Container>
   );
