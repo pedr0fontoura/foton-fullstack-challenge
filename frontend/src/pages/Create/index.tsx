@@ -13,7 +13,7 @@ interface IFormData {
   image: string;
 }
 
-const defaultFormData: IFormData = {
+const DEFAULT_FORM_DATA: IFormData = {
   name: '',
   author: '',
   description: '',
@@ -21,7 +21,7 @@ const defaultFormData: IFormData = {
 };
 
 const Create = () => {
-  const [formData, setFormData] = useState<IFormData>(defaultFormData);
+  const [formData, setFormData] = useState<IFormData>(DEFAULT_FORM_DATA);
 
   const updateFormData = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setFormData(previousFormData => ({
@@ -57,6 +57,7 @@ const Create = () => {
 
     if (isInvalid) return;
 
+    setFormData(DEFAULT_FORM_DATA);
     await api.post('/books', formData);
   };
 
