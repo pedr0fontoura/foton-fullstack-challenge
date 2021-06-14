@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  database:
+    image: mongo
+    container_name: database
+    restart: always
+    network_mode: host
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=challenge
+    volumes:
+      - mongodata:/data/mongo
+
+  app:
+    build: .
+    container_name: challenge-backend
+    network_mode: host
+    volumes:
+      - .:/usr/app
+
+volumes:
+  mongodata:
+    driver: local
