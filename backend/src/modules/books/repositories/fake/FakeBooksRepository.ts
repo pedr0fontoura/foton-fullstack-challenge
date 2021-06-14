@@ -19,13 +19,23 @@ class BooksRepository implements IBooksRepository {
     name,
     limit,
   }: IFindAllByNameDTO): Promise<Book[] | undefined> {
-    const filteredBooks = this.books.filter(book => book.name.includes(name));
+    let books: Book[];
 
-    const isFilteredGreaterThanLimit = filteredBooks.length > limit;
+    if (name) {
+      const lowerCasedName = name.toLowerCase();
 
-    return isFilteredGreaterThanLimit
-      ? filteredBooks.slice(0, limit)
-      : filteredBooks;
+      books = this.books.filter(book =>
+        book.name.toLowerCase().includes(lowerCasedName),
+      );
+    } else {
+      books = this.books;
+    }
+
+    if (limit && limit <= books.length) {
+      books.slice(0, limit);
+    }
+
+    return books;
   }
 
   public async create({
