@@ -1,3 +1,5 @@
+import { injectable, inject } from 'tsyringe';
+
 import Book from '@modules/books/models/Book';
 import IBooksRepository from '@modules/books/repositories/IBooksRepository';
 
@@ -6,12 +8,16 @@ interface IRequest {
   limit: number;
 }
 
-class CreateBookUseCase {
-  constructor(private booksRepository: IBooksRepository) {}
+@injectable()
+class ListBooksUseCase {
+  constructor(
+    @inject('BooksRepository')
+    private booksRepository: IBooksRepository,
+  ) {}
 
   async execute({ name, limit }: IRequest): Promise<Book[]> {
     return this.booksRepository.findAllByName({ name, limit });
   }
 }
 
-export default CreateBookUseCase;
+export default ListBooksUseCase;

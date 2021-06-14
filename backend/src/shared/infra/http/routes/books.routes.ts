@@ -1,21 +1,19 @@
 import { Router } from 'express';
 
+import CreateBookController from '@modules/books/useCases/createBook/CreateBookController';
+import ListBooksController from '@modules/books/useCases/listBooks/ListBooksController';
+import ShowBookController from '@modules/books/useCases/showBook/ShowBookController';
+
 const booksRouter = Router();
 
-booksRouter.post('/', (request, response) => {
-  return response.json({ message: 'Create book' });
-});
+const createBookController = new CreateBookController();
+const listBooksController = new ListBooksController();
+const showBookController = new ShowBookController();
 
-booksRouter.get('/', (request, response) => {
-  const { name_like, _limit } = request.query;
+booksRouter.post('/', createBookController.handle);
 
-  return response.json({ message: 'Index books' });
-});
+booksRouter.get('/', listBooksController.handle);
 
-booksRouter.get('/:id', (request, response) => {
-  const { id } = request.params;
-
-  return response.json({ message: `Show book ${id}` });
-});
+booksRouter.get('/:id', showBookController.handle);
 
 export default booksRouter;

@@ -1,3 +1,5 @@
+import { injectable, inject } from 'tsyringe';
+
 import Book from '@modules/books/models/Book';
 import IBooksRepository from '@modules/books/repositories/IBooksRepository';
 
@@ -8,8 +10,12 @@ interface IRequest {
   image: string;
 }
 
+@injectable()
 class CreateBookUseCase {
-  constructor(private booksRepository: IBooksRepository) {}
+  constructor(
+    @inject('BooksRepository')
+    private booksRepository: IBooksRepository,
+  ) {}
 
   async execute({ name, author, description, image }: IRequest): Promise<Book> {
     const bookAlreadyExists = await this.booksRepository.findByName(name);
