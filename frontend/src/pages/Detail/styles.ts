@@ -41,14 +41,15 @@ export const BackButton = styled(Link)`
 export const Cover = styled.figure`
   width: 153px;
 
-  display: block;
   position: relative;
 
-  margin: 84px auto 0 auto;
+  margin: 84px auto -36px auto;
 
   img {
     height: 229px;
     width: 100%;
+
+    position: relative;
 
     border-radius: 5px;
 
@@ -68,10 +69,21 @@ export const Cover = styled.figure`
     background: #d8d8d8;
     filter: blur(27.1828px);
   }
+
+  @media (min-width: 768px) {
+    width: 203px;
+
+    img {
+      height: 279px;
+    }
+  }
 `;
 
 export const Article = styled.article`
+  max-width: 768px;
+
   padding: 67px 20px 0 20px;
+  margin: 0 auto;
 
   h1 {
     margin-bottom: 7px;
@@ -95,6 +107,10 @@ export const Article = styled.article`
 
     font-size: 14px;
     line-height: 25px;
+  }
+
+  @media (min-width: 768px) {
+    padding-top: 134px;
   }
 `;
 

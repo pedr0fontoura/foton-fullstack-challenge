@@ -56,12 +56,11 @@ const Detail = () => {
           <BackButton to="/">
             <Back />
           </BackButton>
-
-          <Shape1 style={{ position: 'absolute', left: '47px', top: '125px' }} />
-          <Shape2 style={{ position: 'absolute', left: '74px', top: '115px' }} />
-          <Shape3 style={{ position: 'absolute', left: '249px', top: '86px' }} />
-          <Shape4 style={{ position: 'absolute', left: '223px', top: '218px' }} />
-          <Shape5 style={{ position: 'absolute', left: '298px', top: '0px' }} />
+          <Shape1 style={{ position: 'absolute', left: '12.5%', top: '44.3%' }} />
+          <Shape2 style={{ position: 'absolute', left: '19.6%', top: '40.7%' }} />
+          <Shape3 style={{ position: 'absolute', left: '66.2%', top: '30.5%' }} />
+          <Shape4 style={{ position: 'absolute', left: '59.3%', top: '77.3%' }} />
+          <Shape5 style={{ position: 'absolute', right: '0', top: '0' }} />
 
           {isLoading && <LoadingCover />}
 
