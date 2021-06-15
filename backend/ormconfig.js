@@ -1,6 +1,6 @@
 require("dotenv/config");
 
-const config = [
+const development = [
   {
     name: "default",
     type: "mongodb",
@@ -15,4 +15,19 @@ const config = [
   }
 ];
 
-module.exports = config;
+const production = [
+  {
+    name: "default",
+    type: "mongodb",
+    host: process.env.MONGO_HOST,
+    port: 27017,
+    database: process.env.MONGO_DATABASE,
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    entities: [
+      './dist/modules/**/infra/typeorm/schemas/*.ts'
+    ]
+  }
+];
+
+module.exports = process.env.NODE_ENV === 'development' ? development : production;

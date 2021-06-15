@@ -10,4 +10,6 @@ COPY . .
 
 EXPOSE 3333
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "build"]
+
+CMD ["node", "./dist/shared/infra/http/server.js"]
