@@ -25,7 +25,7 @@ const production = [
     useUnifiedTopology: true,
     useNewUrlParser: true,
     entities: [
-      './dist/modules/**/infra/typeorm/schemas/*.ts'
+      './dist/modules/**/infra/typeorm/schemas/*.js'
     ]
   }
 ];
