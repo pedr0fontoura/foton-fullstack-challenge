@@ -1,42 +1,53 @@
-# Fullstack Challenge
+<h1 align="center">
+  <a href="https://fotontech.io/">
+    <img alt="Foton" src="https://i.imgur.com/9uFU5Np.png" width="400px" />
+  </a>
+</h1>
 
-Clone this repository and start our challenge **right now**.
+<h3 align="center">
+  Fullstack Challenge
+</h3>
 
-Use **React** or **React Native** to develop the frontend app. In backend, use **NodeJS**.
+<p align="center">Repository for the Foton full-stack technical challenge 💻</p>
 
-**NOTE:** If you have any questions regarding the test, just send us your question on our Discord's channel **#technical-challenge** on [Foton Discord](https://discord.gg/uw55aDewNf).
+<p align="center">
+  <a href="#-about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-preview">Preview</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-running-locally">Running Locally</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-license">License</a>
+</p>
 
-## Design/Screens
-https://www.figma.com/file/KFElqzD983WNyvMY1SaF0c/book-app?node-id=0%3A1
+## 💬 About
 
-<img width="759" alt="Screen Shot 2021-04-13 at 10 42 56" src="https://user-images.githubusercontent.com/13947203/114562602-04ac2880-9c45-11eb-8f33-cc6637c475fb.png">
+This application was developed following the [challenge guidelines](https://github.com/FotonTech/fullstack-challenge).
+
+The front-end consists of a React App designed for mobile-first that also scales well for larger devices. With a high level of detail, the website delivers a great and smooth experience for the end-user.
+
+The back-end is a Node.js REST API powered by Express, TypeORM, and MongoDB. Complying with code best practices and using powerful tools like Docker, this part of the app represents a reduced version of high-scalable and production-ready software.
+
+## 📱 Preview
+
+https://user-images.githubusercontent.com/48810400/121986317-a4348700-cd6c-11eb-8031-1f5d0cd2a716.mp4
+
+<br />
+
+## 💻 Running locally
+
+1. Clone the repository
+
+```bash
+$ git clone https://github.com/pedr0fontoura/foton-fullstack-challenge.git
+```
+
+2. Follow the [back-end running guide](https://github.com/pedr0fontoura/foton-fullstack-challenge/blob/master/backend/README).
+
+3. Follow the [front-end running guide](https://github.com/pedr0fontoura/foton-fullstack-challenge/blob/master/frontend/README).
 
 
-The website design has 4 screens, which are:
+## :memo: License
 
-### Home
+This project is under the MIT license. Check the [license](https://github.com/pedr0fontoura/foton-fullstack-challenge/blob/master/LICENSE) for more information.
 
-1. Create a Pixel Perfect screen based on design above;
-2. The books must be clickable and redirect to details screen.
+<br />
 
-### Search
-
-In this screen the functionalities below are **mandatory**:
-
-1. See a list of books based on search query;
-2. Make it possible to search for more books with a "Load more" button;
-3. Search books by name;
-4. Click on one of the books to see their details.
-
-### Books Details
-
-In this screen the functionalities below are **mandatory**:
-
-1. See all information for the selected book.
-
-### New Book
-
-In this screen the functionalities below are **mandatory**:
-
-1. Create a Book;
-2. Validate the form data.
+Made by Pedro Fontoura :wave: [Get in touch!](https://www.linkedin.com/in/pffrd/)
