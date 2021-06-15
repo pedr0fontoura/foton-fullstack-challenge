@@ -16,12 +16,20 @@ class BooksRepository implements IBooksRepository {
   }
 
   public async findById(id: string): Promise<Book | undefined> {
-    const bookSchema = await this.ormRepository.findOne(
-      new ObjectId(id) as ObjectID,
-    );
+    let objectId: ObjectId;
+
+    try {
+      objectId = new ObjectId(id);
+    } catch {
+      objectId = undefined;
+    }
+
+    const bookSchema = await this.ormRepository.findOne(objectId as ObjectID);
 
     return (
-      bookSchema && new Book({ ...bookSchema, id: bookSchema.id.toString() })
+      objectId &&
+      bookSchema &&
+      new Book({ ...bookSchema, id: bookSchema.id.toString() })
     );
   }
 
