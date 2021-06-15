@@ -5,20 +5,24 @@ services:
     image: mongo
     container_name: database
     restart: always
-    network_mode: host
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=admin
       - MONGO_INITDB_DATABASE=challenge
     volumes:
       - mongodata:/data/mongo
+    ports:
+      - 27017:27017
 
   app:
     build: .
     container_name: challenge-backend
-    network_mode: host
     volumes:
       - .:/usr/app
+    ports:
+      - 3333:3333
+    links:
+      - database
+    depends_on:
+      - database
 
 volumes:
   mongodata:
