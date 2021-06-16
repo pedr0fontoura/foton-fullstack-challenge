@@ -107,6 +107,8 @@ export const Article = styled.article`
 
     font-size: 14px;
     line-height: 25px;
+
+    white-space: pre-line;
   }
 
   @media (min-width: 768px) {
