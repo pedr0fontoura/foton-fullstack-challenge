@@ -121,3 +121,11 @@ export const Form = styled.form`
     }
   }
 `;
+
+export const Message = styled.p`
+  margin: 250px auto 0 auto;
+
+  font-size: 24px;
+
+  opacity: 0.8;
+`;
