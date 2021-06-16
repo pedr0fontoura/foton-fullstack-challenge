@@ -12,6 +12,11 @@ services:
     ports:
       - 27017:27017
 
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+
   app:
     build: .
     container_name: challenge-backend
@@ -21,8 +26,10 @@ services:
       - 3333:3333
     links:
       - database
+      - redis
     depends_on:
       - database
+      - redis
 
 volumes:
   mongodata:

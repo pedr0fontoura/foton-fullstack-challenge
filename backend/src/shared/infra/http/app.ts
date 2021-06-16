@@ -7,6 +7,7 @@ import { createConnection } from 'typeorm';
 
 import '@shared/container';
 import AppError from '@shared/errors/AppError';
+import rateLimiter from '@shared/infra/http/middlewares/rateLimiter';
 
 import routes from './routes';
 
@@ -15,6 +16,8 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 const app = express();
+
+app.use(rateLimiter);
 
 app.use(cors());
 app.use(express.json());
