@@ -50,5 +50,5 @@ jobs:
           script: |
             cd ~/app/backend
             yarn
-            NODE_ENV=production pm2 restart foton-challenge-backend
+            NODE_ENV=production pm2 restart fotonapi
             
