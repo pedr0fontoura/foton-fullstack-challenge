@@ -2,10 +2,10 @@ import 'reflect-metadata';
 import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
+import { createConnection } from 'typeorm';
 
 import '@shared/container';
 import AppError from '@shared/errors/AppError';
-import createConnection from '@shared/infra/typeorm';
 
 import routes from './routes';
 
