@@ -137,6 +137,8 @@ const Home = () => {
             </Grid>
           )}
 
+          {books.length === 0 && <Message>Looks like the bookshelf is empty ...</Message>}
+
           {error && <Message>Something went wrong ...</Message>}
         </Content>
       </ContentWrapper>
