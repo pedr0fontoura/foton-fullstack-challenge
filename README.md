@@ -78,4 +78,4 @@ This project is under the MIT license. Check the [license](https://github.com/pe
 
 <br />
 
-Made by Pedro Fontoura :wave: [Get in touch!](https://www.linkedin.com/in/pffrd/)
+Made by Pedro Fontoura :wave: [Get in touch!](https://twitter.com/pedr0fontoura)
