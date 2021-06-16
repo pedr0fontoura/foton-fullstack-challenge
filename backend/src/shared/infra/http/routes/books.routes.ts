@@ -17,7 +17,7 @@ booksRouter.post(
     [Segments.BODY]: {
       name: Joi.string().max(100).required(),
       author: Joi.string().max(100).required(),
-      description: Joi.string().max(1000).required(),
+      description: Joi.string().max(5000).required(),
       image: Joi.string().uri().required(),
     },
   }),
