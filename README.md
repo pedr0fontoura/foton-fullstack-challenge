@@ -35,7 +35,7 @@ https://user-images.githubusercontent.com/48810400/121986317-a4348700-cd6c-11eb-
 
 To clone and run this application, you'll need [Node.js v14.15.1+](https://nodejs.org/en/), [Yarn v1.22.5+](https://yarnpkg.com/) and [Git](https://git-scm.com/).
 
-You'll also need a MongoDB server.
+You'll also need a MongoDB and a Redis database running.
 
 Don't forget to create a `.env` file following the `.env.example` for both back-end and front-end.
 
