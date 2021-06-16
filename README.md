@@ -33,15 +33,43 @@ https://user-images.githubusercontent.com/48810400/121986317-a4348700-cd6c-11eb-
 
 ## 💻 Running locally
 
-1. Clone the repository
+To clone and run this application, you'll need [Node.js v14.15.1+](https://nodejs.org/en/), [Yarn v1.22.5+](https://yarnpkg.com/) and [Git](https://git-scm.com/).
+
+You'll also need a MongoDB server.
+
+Don't forget to create a `.env` file following the `.env.example` for both back-end and front-end.
 
 ```bash
+# Clone the repository
 $ git clone https://github.com/pedr0fontoura/foton-fullstack-challenge.git
+
+# Navigate to the repository
+$ cd foton-fullstack-challenge
+
+# ...
+# Starting the back-end
+
+# Navigate to backend
+$ cd backend
+
+# Install the dependencies
+$ yarn
+
+# Run the API
+$ yarn dev
+
+# ... 
+# Starting the front-end
+
+# Navigate to frontend
+$ cd frontend
+
+# Install the dependencies
+$ yarn
+
+# Run the React App
+$ yarn dev
 ```
-
-2. Follow the [back-end running guide](https://github.com/pedr0fontoura/foton-fullstack-challenge/blob/master/backend/README).
-
-3. Follow the [front-end running guide](https://github.com/pedr0fontoura/foton-fullstack-challenge/blob/master/frontend/README).
 
 
 ## :memo: License
