@@ -3,6 +3,8 @@ name: CI
 on:
   push:
     branches: [ master ]
+    paths:
+      - "backend/**"
 
   workflow_dispatch:
 
@@ -25,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Buid
+      - name: Build
         run: yarn build
 
       - name: Copy files
@@ -36,4 +38,17 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           source: "backend/*,!backend/node_modules"
-          target: "~/app/backend"
+          target: "~/app"
+          
+      - name: Run app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/app/backend
+            yarn
+            NODE_ENV=production pm2 restart foton-challenge-backend
+            
